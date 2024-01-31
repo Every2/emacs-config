@@ -144,11 +144,13 @@
   (lsp-rust-analyzer-display-parameter-hints nil)
   (lsp-rust-analyzer-display-reborrow-hints nil)
   (lsp-pylsp-plugins-pylint-args '("--disable=C0114,C0115,C0116"))
-  (lsp-clients-clangd-library-directories '("/usr/include/c++/13.2.1"))
+  (lsp-clients-clangd-library-directories '("/usr/include/c++/13.2.1")
+  (lsp-elixir-signature-after-complete t))
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (add-hook 'c-mode 'lsp)
-  (add-hook 'cpp-mode 'lsp))
+  (add-hook 'cpp-mode 'lsp)
+  (setq lsp-enable-file-watchers nil))
 
  
 
@@ -156,6 +158,7 @@
   :ensure t
   :commands lsp-ui-mode
   :custom
+  (lsp-ui-flycheck-enable t)
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
@@ -203,8 +206,32 @@
   :config
   (add-hook 'after-init-hook 'global-flycheck-mode)) 
 
+(electric-pair-mode 1) ;; ativar auto close
+
 (use-package dap-mode
-  :ensure t)  
+  :ensure t)
+
+(use-package smartparens
+  :ensure t
+  :hook (elixir-mode . smartparens-mode)
+  :config
+  (sp-with-modes '(elixir-mode)
+		 (sp-local-pair "do" "end" :actions '(insert))))
+
+(use-package flycheck-credo
+  :after (flycheck elixir-mode)
+
+  :custom
+  (flycheck-elixir-credo-strict t)
+
+  :hook
+  (elixir-mode . flycheck-credo-setup))
+
+
+
+(use-package flycheck-credo
+  :ensure t
+  :hook (elixir-mode .  flycheck-credo-setup))
 ;;Atalhos personalizados
 (global-set-key (kbd "C-<tab>") 'other-window) ;; navegar entre as janelas
 (global-set-key (kbd "M-<down>") 'enlarge-window) ;; diminuir a janela alt + seta pra baixo
@@ -223,7 +250,7 @@
  '(custom-safe-themes
    '("e70e87ad139f94d3ec5fdf782c978450fc2cb714d696e520b176ff797b97b8d2" default))
  '(package-selected-packages
-   '(typescript-mode -t elixir-mode lsp-haskell yasnippet company company-lsp lsp-pyright helm-lsp dap-mode flycheck autothemer kanagawa-theme ergoemacs-mode ace-window all-the-icons neotree which-key try)))
+   '(flycheck-credo typescript-mode -t elixir-mode lsp-haskell yasnippet company company-lsp lsp-pyright helm-lsp dap-mode flycheck autothemer kanagawa-theme ergoemacs-mode ace-window all-the-icons neotree which-key try)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
