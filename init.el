@@ -5,6 +5,8 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
+(setq make-backup-files nil) ; stop creating ~ files
+
 ;; Remover barra de rolagem
 (scroll-bar-mode -1)
 
