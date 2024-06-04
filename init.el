@@ -61,14 +61,8 @@
   :ensure t
   :bind (("M-o" . ace-window))) ;; me movimentar entre varias janelas
 
-
 (use-package autothemer
   :ensure t)
-
-;; Tema
-(use-package kanagawa-theme
-  :ensure t
-  :config (load-theme 'kanagawa t)) 
 
 ;; LSP
 
@@ -124,12 +118,7 @@
   :hook (python-mode . lsp)
   :hook (c-mode . lsp)
   :hook (c++-mode . lsp)
-  :hook (haskell-mode . lsp)
-  :hook (js-mode . lsp)
-  :hook (typescript-mode . lsp)
-  :hook (elixir-mode . lsp)
   :init
-  (add-to-list 'exec-path "~/elixir-ls-v0.19.0")
   :custom
   ;; what to use when checking on-save. "check" is default, I prefer clippy
   (lsp-rust-analyzer-cargo-watch-command "clippy")
@@ -146,14 +135,11 @@
   (lsp-rust-analyzer-display-parameter-hints nil)
   (lsp-rust-analyzer-display-reborrow-hints nil)
   (lsp-pylsp-plugins-pylint-args '("--disable=C0114,C0115,C0116"))
-  (lsp-clients-clangd-library-directories '("/usr/include/c++/13.2.1")
-  (lsp-elixir-signature-after-complete t))
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (add-hook 'c-mode 'lsp)
   (add-hook 'cpp-mode 'lsp)
   (setq lsp-enable-file-watchers nil))
-
  
 
 (use-package lsp-ui
@@ -183,30 +169,21 @@
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list
   :ensure t)
 
-;; optionally if you want to use debugger
-(use-package dap-mode
-  :ensure t)
-
-(use-package lsp-haskell
-  :ensure t)
-
-(use-package elixir-mode
-  :ensure t)
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
 ;; optional if you want which-key integration
 (use-package which-key
     :config
     (which-key-mode))
 
-(use-package typescript-mode
- :ensure t)
+(use-package kuronami-theme
+  :ensure t
+  :config (load-theme 'kuronami t))
 
 (use-package flycheck
   :ensure t
   :init  (global-flycheck-mode t)
   :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)) 
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (setq flycheck-clang-args "-std=c++20")) 
 
 (electric-pair-mode 1) ;; ativar auto close
 
@@ -220,20 +197,6 @@
   (sp-with-modes '(elixir-mode)
 		 (sp-local-pair "do" "end" :actions '(insert))))
 
-(use-package flycheck-credo
-  :after (flycheck elixir-mode)
-
-  :custom
-  (flycheck-elixir-credo-strict t)
-
-  :hook
-  (elixir-mode . flycheck-credo-setup))
-
-
-
-(use-package flycheck-credo
-  :ensure t
-  :hook (elixir-mode .  flycheck-credo-setup))
 ;;Atalhos personalizados
 (global-set-key (kbd "C-<tab>") 'other-window) ;; navegar entre as janelas
 (global-set-key (kbd "M-<down>") 'enlarge-window) ;; diminuir a janela alt + seta pra baixo
@@ -241,18 +204,16 @@
 (global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
 (global-set-key (kbd "C-c C-SPC") 'set-mark-command) ;; selecionar uma area
-
-
-;; melpa stuff
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("e70e87ad139f94d3ec5fdf782c978450fc2cb714d696e520b176ff797b97b8d2" default))
+   '("77f1e155387d355fbbb3b382a28da41cc709b2a1cc71e7ede03ee5c1859468d2" default))
+ '(delete-selection-mode nil)
  '(package-selected-packages
-   '(flycheck-credo typescript-mode -t elixir-mode lsp-haskell yasnippet company company-lsp lsp-pyright helm-lsp dap-mode flycheck autothemer kanagawa-theme ergoemacs-mode ace-window all-the-icons neotree which-key try)))
+   '(flycheck-credo smartparens flycheck typescript-mode elixir-mode lsp-haskell dap-mode lsp-treemacs lsp-ivy helm-lsp toml-mode yasnippet lsp-ui lsp-mode rustic company kanagawa-theme autothemer ace-window neotree all-the-icons auto-complete which-key try)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
