@@ -16,3 +16,8 @@ ls /usr/include/c++/
 //13 14 15
 ```
 
+To Rust lsp works just
+
+```
+rustup component add rust-analyzer
+```
