@@ -174,9 +174,7 @@
     :config
     (which-key-mode))
 
-(use-package kuronami-theme
-  :ensure t
-  :config (load-theme 'kuronami t))
+(load-theme 'kanagawa t)
 
 (use-package flycheck
   :ensure t
