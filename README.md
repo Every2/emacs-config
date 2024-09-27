@@ -26,8 +26,19 @@ ls /usr/include/c++/
 //13 14 15
 ```
 
+# Rust LSP
+
 To Rust lsp works just
 
 ```
 rustup component add rust-analyzer
+```
+
+# DAP
+
+Don't forget to use these commands to dap works in emacs
+
+```
+dap-cpptols-setup
+dap-codelldb-setup
 ```
