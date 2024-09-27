@@ -91,7 +91,10 @@
   :ensure t)
 
 (use-package vterm
-    :ensure t)
+  :ensure t)
+
+(use-package multiple-cursors
+  :ensure t)
 
 (dap-mode 1)
 (dap-ui-mode 1)
