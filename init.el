@@ -96,6 +96,9 @@
 (use-package multiple-cursors
   :ensure t)
 
+(use-package zig-mode
+  :ensure t)
+
 (dap-mode 1)
 (dap-ui-mode 1)
 (dap-tooltip-mode 1)
@@ -111,4 +114,16 @@
 				   :program "path"
 				   :cwd "path"))
 
-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(zig-mode multiple-cursors vterm magit dap-mode alchemist rustic tree-sitter-langs tree-sitter company company-mode flycheck-eglot flycheck which-key)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
