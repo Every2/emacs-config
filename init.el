@@ -99,6 +99,9 @@
 (use-package zig-mode
   :ensure t)
 
+(use-package go-mode
+  :ensure t)
+
 (dap-mode 1)
 (dap-ui-mode 1)
 (dap-tooltip-mode 1)
@@ -113,3 +116,4 @@
 				   :request "launch"
 				   :program "path"
 				   :cwd "path"))
+
