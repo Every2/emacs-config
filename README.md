@@ -55,4 +55,4 @@ mix deps.get
 mix package
 ``` 
 
-and pass the path in `~/home/lexical/_build/dev/package/lexical/bin/file.sh` to init.el
+and pass the path in `~/lexical/_build/dev/package/lexical/bin/file.sh` to init.el
