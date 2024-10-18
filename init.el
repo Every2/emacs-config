@@ -102,6 +102,9 @@
 (use-package go-mode
   :ensure t)
 
+(use-package haskell-mode
+  :ensure t)
+
 (dap-mode 1)
 (dap-ui-mode 1)
 (dap-tooltip-mode 1)
