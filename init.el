@@ -10,6 +10,18 @@
 (global-display-line-numbers-mode t)
 
 (require 'package)
+(setq inhibit-startup-message t)
+
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+(setq make-backup-files nil)
+
+(scroll-bar-mode -1)
+
+(global-display-line-numbers-mode t)
+
+(require 'package)
 
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
@@ -40,6 +52,11 @@
   :after (flycheck eglot)
   :config
   (global-flycheck-eglot-mode 1))
+
+(use-package flycheck-haskell
+  :ensure t
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 (global-set-key (kbd "C-<tab>") 'other-window)
 
@@ -80,10 +97,6 @@
 
 (setq rustic-lsp-client 'eglot)
 
-
-(use-package alchemist
-  :ensure t)
-
 (use-package dap-mode
   :ensure t)
 
@@ -119,4 +132,12 @@
 				   :request "launch"
 				   :program "path"
 				   :cwd "path"))
+
+(with-eval-after-load 'eglot
+  (setf (alist-get 'elixir-mode eglot-server-programs)
+        (if (and (fboundp 'w32-shell-dos-semantics)
+                 (w32-shell-dos-semantics))
+            '("language_server.bat")
+          (eglot-alternatives
+           '("language_server.sh" "~/lexical/_build/dev/package/lexical/bin/start_lexical.sh")))))
 

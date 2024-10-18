@@ -42,3 +42,17 @@ Don't forget to use these commands to dap works in emacs
 dap-cpptols-setup
 dap-codelldb-setup
 ```
+
+# Elixir lexical
+
+Install lexical
+
+
+``` 
+git clone git@github.com:lexical-lsp/lexical.git
+cd lexical
+mix deps.get
+mix package
+``` 
+
+and pass the path in `~/home/lexical/_build/dev/package/lexical/bin/file.sh` to init.el
