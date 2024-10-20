@@ -4,6 +4,7 @@
 (menu-bar-mode -1)
 
 (setq make-backup-files nil)
+(setq-default tab-width 4)
 
 (scroll-bar-mode -1)
 
