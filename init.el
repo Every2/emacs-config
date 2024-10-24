@@ -110,9 +110,6 @@
 (use-package multiple-cursors
   :ensure t)
 
-(use-package zig-mode
-  :ensure t)
-
 (use-package go-mode
   :ensure t)
 
