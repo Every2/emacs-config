@@ -5,18 +5,8 @@
 
 (setq make-backup-files nil)
 (setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 
-(scroll-bar-mode -1)
-
-(global-display-line-numbers-mode t)
-
-(require 'package)
-(setq inhibit-startup-message t)
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
-(setq make-backup-files nil)
 
 (scroll-bar-mode -1)
 
@@ -109,6 +99,8 @@
 
 (use-package multiple-cursors
   :ensure t)
+;;Similar do VSCODE/ATOM CTRL-D
+(global-set-key (kbd "C-d") 'mc/mark-next-like-this)
 
 (use-package go-mode
   :ensure t)
@@ -138,4 +130,3 @@
             '("language_server.bat")
           (eglot-alternatives
            '("language_server.sh" "~/lexical/_build/dev/package/lexical/bin/start_lexical.sh")))))
-
