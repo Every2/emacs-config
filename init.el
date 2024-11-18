@@ -99,8 +99,18 @@
 
 (use-package multiple-cursors
   :ensure t)
-;;Similar do VSCODE/ATOM CTRL-D
+;;VSCODE CTRL + D OR ADD A CURSOR IN LINE BELOW
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
+;;SAME BUT ADD LINE ABOVE
+(global-set-key (kbd "C-c p") 'mc/mark-previous-like-this)
+;;MARK ALL THE SAME
+(global-set-key (kbd "C-c a") 'mc/mark-all-like-this)
+
+;;MOVE TEXT UP OR DOWN USING ALT (META) UP~DOWN
+(use-package move-text
+  :ensure t
+  :init
+  (move-text-default-bindings))
 
 (use-package go-mode
   :ensure t)
