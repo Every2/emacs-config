@@ -56,3 +56,12 @@ mix package
 ``` 
 
 and pass the path in `~/lexical/_build/dev/package/lexical/bin/file.sh` to init.el
+
+
+# Latex
+
+Install tex-live before and run
+```
+M-x list-packages and find auctex or M-X auctex
+```
+

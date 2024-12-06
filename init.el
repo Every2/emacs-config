@@ -7,6 +7,9 @@
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
 
+(setq inhibit-splash-screen t)
+
+(transient-mark-mode 1)
 
 (scroll-bar-mode -1)
 
@@ -24,6 +27,12 @@
   (package-install 'use-package) )
 
 (load-theme 'kanagawa t)
+
+(require 'org)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
+(setq TeX-PDF-mode t)
 
 (use-package which-key
   :ensure t
@@ -118,6 +127,11 @@
 (use-package haskell-mode
   :ensure t)
 
+(use-package latex-preview-pane
+  :ensure t
+  :custom
+  (latex-preview-pane-enable))
+
 (dap-mode 1)
 (dap-ui-mode 1)
 (dap-tooltip-mode 1)
@@ -140,3 +154,5 @@
             '("language_server.bat")
           (eglot-alternatives
            '("language_server.sh" "~/lexical/_build/dev/package/lexical/bin/start_lexical.sh")))))
+
+
