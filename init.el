@@ -109,7 +109,7 @@
 (use-package multiple-cursors
   :ensure t)
 ;;VSCODE CTRL + D OR ADD A CURSOR IN LINE BELOW
-(global-set-key (kbd "C-d") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c q") 'mc/mark-next-like-this)
 ;;SAME BUT ADD LINE ABOVE
 (global-set-key (kbd "C-c p") 'mc/mark-previous-like-this)
 ;;MARK ALL THE SAME
