@@ -1,4 +1,4 @@
-;; Emacs display configurations
+;; Emacs initial raw configs
 
 (setq inhibit-startup-message t)
 
