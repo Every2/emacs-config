@@ -1,15 +1,14 @@
-# Dot files
+# Emacs config
 
-My dotfiles with some tutorials to remember in the future
-
-# Theme
-
-Kanagawa theme is broken, so I downloaded the .el file in the repo and put in ,emacs.d/ folder together with init.el and just load the theme.
+My emacs config with some reminders
 
 
 # C/C++ LSP
 
 Disclaimer: Currently I'm using arch linux and this step isn't nedded!!
+
+
+Disclaimer2: In Ubuntu 24.04 isn't necessary too.
 
 To run the C/C++ lsp is needed the latest version of libstdc/libstdc++(version here) and libstdc/libstdc++(version here)-devel.
 
