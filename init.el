@@ -1,3 +1,5 @@
+;; Emacs display configurations
+
 (setq inhibit-startup-message t)
 
 (tool-bar-mode -1)
@@ -9,12 +11,15 @@
 
 (setq inhibit-splash-screen t)
 
+(electric-pair-mode 1)
+
 (transient-mark-mode 1)
 
 (scroll-bar-mode -1)
 
 (global-display-line-numbers-mode t)
 
+;; MELPA
 (require 'package)
 
 (add-to-list 'package-archives
@@ -23,44 +28,14 @@
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents) 
+  (package-refresh-contents)
   (package-install 'use-package) )
 
-(load-theme 'kanagawa t)
-
-(require 'org)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-
-(add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
-(setq TeX-PDF-mode t)
-
-(use-package which-key
+;; Comestic
+(use-package kanagawa-themes
   :ensure t
   :config
-  (progn
-    (which-key-mode)
-    (which-key-setup-side-window-right-bottom)))
-
-(use-package flycheck
-  :ensure t
-  :init  (global-flycheck-mode t)
-  :config
-  (add-hook 'after-init-hook 'global-flycheck-mode))
-
-(use-package flycheck-eglot
-  :ensure t
-  :after (flycheck eglot)
-  :config
-  (global-flycheck-eglot-mode 1))
-
-(use-package flycheck-haskell
-  :ensure t
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-
-(global-set-key (kbd "C-<tab>") 'other-window)
-
-(electric-pair-mode 1)
+  (load-theme 'kanagawa-wave t))
 
 (use-package neotree
   :ensure t
@@ -72,9 +47,6 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package company
-  :ensure t)
-
 (use-package tree-sitter
   :ensure t)
 
@@ -83,10 +55,38 @@
 
 (global-tree-sitter-mode)
 
+;; NON MELPA PACKAGES
+(require 'org)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-(add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-(add-hook 'prog-mode-hook #'eglot-ensure)
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
+(setq TeX-PDF-mode t)
+
+
+;; Programming/Modes/LSP
+(add-to-list 'load-path "~/lsp-bridge")
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
+
+(use-package markdown-mode
+  :ensure t)
+
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-global-mode 1))
+
+(use-package elixir-mode
+  :ensure t)
+
+(use-package go-mode
+  :ensure t)
+
+
+(use-package latex-preview-pane
+  :ensure t
+  :custom
+  (latex-preview-pane-enable))
 
 (use-package rustic
   :ensure t
@@ -95,16 +95,33 @@
   :custom
   (rustic-cargo-use-last-stored-arguments t))
 
-(setq rustic-lsp-client 'eglot)
-
 (use-package dap-mode
-  :ensure t)
+  :ensure t
+  :init
+  (dap-mode 1)
+  (dap-ui-mode 1)
+  (dap-tooltip-mode 1)
+  (tooltip-mode 1)
+  (dap-ui-controls-mode 1))
 
-(use-package magit
-  :ensure t)
+(require 'dap-cpptools)
+(require 'dap-codelldb)
+(dap-register-debug-template "Codelldb"
+			     (list :type "lldb"
+				   :request "launch"
+				   :program "path"
+				   :cwd "path"))
 
-(use-package vterm
-  :ensure t)
+;; Movimentation
+
+(global-set-key (kbd "C-<tab>") 'other-window)
+
+(use-package which-key
+  :ensure t
+  :config
+  (progn
+    (which-key-mode)
+    (which-key-setup-side-window-right-bottom)))
 
 (use-package multiple-cursors
   :ensure t)
@@ -120,39 +137,4 @@
   :ensure t
   :init
   (move-text-default-bindings))
-
-(use-package go-mode
-  :ensure t)
-
-(use-package haskell-mode
-  :ensure t)
-
-(use-package latex-preview-pane
-  :ensure t
-  :custom
-  (latex-preview-pane-enable))
-
-(dap-mode 1)
-(dap-ui-mode 1)
-(dap-tooltip-mode 1)
-(tooltip-mode 1)
-(dap-ui-controls-mode 1)
-
-(require 'dap-cpptools)
-(require 'dap-codelldb)
-
-(dap-register-debug-template "Codelldb"
-			     (list :type "lldb"
-				   :request "launch"
-				   :program "path"
-				   :cwd "path"))
-
-(with-eval-after-load 'eglot
-  (setf (alist-get 'elixir-mode eglot-server-programs)
-        (if (and (fboundp 'w32-shell-dos-semantics)
-                 (w32-shell-dos-semantics))
-            '("language_server.bat")
-          (eglot-alternatives
-           '("language_server.sh" "~/lexical/_build/dev/package/lexical/bin/start_lexical.sh")))))
-
 

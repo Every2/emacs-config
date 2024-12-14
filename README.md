@@ -43,20 +43,12 @@ dap-cpptols-setup
 dap-codelldb-setup
 ```
 
-# Elixir lexical
+# Elixir
 
-Install lexical
-
-
-``` 
-git clone git@github.com:lexical-lsp/lexical.git
-cd lexical
-mix deps.get
-mix package
-``` 
-
-and pass the path in `~/lexical/_build/dev/package/lexical/bin/file.sh` to init.el
-
+Install ElixirLS and put in your shell path:
+```
+export PATH="$PATH:/path/to/elixir/ls"
+```
 
 # Latex
 
@@ -64,4 +56,8 @@ Install tex-live before and run
 ```
 M-x list-packages and find auctex or M-X auctex
 ```
+
+# Vterm
+
+Vterm is used with GUIX package manager. Mention in init.el isn't necessary anymore
 
