@@ -42,12 +42,6 @@ dap-cpptols-setup
 dap-codelldb-setup
 ```
 
-# Elixir
-
-Install ElixirLS and put in your shell path:
-```
-export PATH="$PATH:/path/to/elixir/ls"
-```
 
 # Latex
 

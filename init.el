@@ -1,4 +1,4 @@
-;; Emacs initial raw configs
+;; Emacs display configurations
 
 (setq inhibit-startup-message t)
 
@@ -64,10 +64,6 @@
 
 
 ;; Programming/Modes/LSP
-(add-to-list 'load-path "~/lsp-bridge")
-(require 'lsp-bridge)
-(global-lsp-bridge-mode)
-
 (use-package markdown-mode
   :ensure t)
 
@@ -76,24 +72,27 @@
   :init
   (yas-global-mode 1))
 
+(add-to-list 'load-path "~/lsp-bridge")
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
+
 (use-package elixir-mode
   :ensure t)
+(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/elixir-ls")))
 
 (use-package go-mode
   :ensure t)
+
+(use-package rust-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
 
 
 (use-package latex-preview-pane
   :ensure t
   :custom
   (latex-preview-pane-enable))
-
-(use-package rustic
-  :ensure t
-  :config
-  (setq rustic-format-on-save nil)
-  :custom
-  (rustic-cargo-use-last-stored-arguments t))
 
 (use-package dap-mode
   :ensure t
@@ -137,4 +136,3 @@
   :ensure t
   :init
   (move-text-default-bindings))
-
