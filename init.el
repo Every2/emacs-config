@@ -75,6 +75,7 @@
 (add-to-list 'load-path "~/lsp-bridge")
 (require 'lsp-bridge)
 (global-lsp-bridge-mode)
+(add-hook 'racket-mode-hook #'lsp-bridge-mode)
 
 (use-package elixir-mode
   :ensure t)
@@ -87,7 +88,6 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
-
 
 (use-package latex-preview-pane
   :ensure t
@@ -136,3 +136,4 @@
   :ensure t
   :init
   (move-text-default-bindings))
+
