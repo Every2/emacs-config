@@ -2,27 +2,25 @@
 
 My emacs config with some reminders
 
+*This config use lsp mode booster, download it before running!!!*
+
 
 # C/C++ LSP
 
-Disclaimer: Currently I'm using arch linux and this step isn't nedded!!
-
-
-Disclaimer2: In Ubuntu 24.04 isn't necessary too.
 
 To run the C/C++ lsp is needed the latest version of libstdc/libstdc++(version here) and libstdc/libstdc++(version here)-devel.
 
-In order to achieve this, you can search in your OS. I use openSuse so it's something like:
+In order to achieve this, you can search in your OS. I use Ubuntu so it's something like:
 
 ```
-rpm -qa | grep c++  
+apt-cache show libstdc++ | grep "dev"
 ```
 
-And see which version is installed and try find a newer one if nothings works
+And see which version is installed and try find a newer one if nothings works. I.e Mine
 
 ```
 ls /usr/include/c++/  
-//13 14 15
+//13 14
 ```
 
 # Rust LSP
@@ -52,5 +50,5 @@ M-x list-packages and find auctex or M-X auctex
 
 # Vterm
 
-Vterm is used with GUIX package manager. Mention in init.el isn't necessary anymore
+Vterm is compiled from source, because I use Ubuntu. Recommended: Use Guix or use melpa.
 
