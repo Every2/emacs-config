@@ -1,4 +1,6 @@
-;; Emacs display configurations
+;; Emacs display and initial configurations
+
+(setenv "LSP_USE_PLISTS" "true")
 
 (setq inhibit-startup-message t)
 
@@ -67,8 +69,6 @@
 
 ;; Programming/Modes/LSP
 
-(setenv "LSP_USE_PLISTS" "true")
-
 (defun lsp-booster--advice-json-parse (old-fn &rest args)
   "Try to parse bytecode instead of json."
   (or
@@ -114,6 +114,8 @@
   (go-mode . lsp)
   (elixir-mode . lsp)
   (cmake-mode . lsp)
+  (toml-mode . lsp)
+  (racket-mode . lsp)
   :commands lsp)
 
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . 'lsp-mode))
@@ -130,8 +132,6 @@
 
 (setq lsp-ui-doc-enable t)
 
-(use-package toml-mode
-  :ensure t)
 
 (use-package helm-lsp
   :commands helm-lsp-workspace-symbol
@@ -147,7 +147,10 @@
   :ensure t
   :init  (global-flycheck-mode t)
   :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)) 
+  (add-hook 'after-init-hook 'global-flycheck-mode))
+
+(use-package toml-mode
+  :ensure t)
 
 (use-package elixir-mode
   :ensure t)
@@ -167,6 +170,9 @@
   (add-hook 'before-save-hook 'lsp-format-buffer nil t))
 
 (use-package cmake-mode
+  :ensure t)
+
+(use-package racket-mode
   :ensure t)
 
 (use-package latex-preview-pane
@@ -216,4 +222,3 @@
   :ensure t
   :init
   (move-text-default-bindings))
-
