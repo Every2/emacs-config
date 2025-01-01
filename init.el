@@ -1,5 +1,4 @@
-;; Emacs display and initial configurations
-
+;; Emacs display/initial configurations
 (setenv "LSP_USE_PLISTS" "true")
 
 (setq inhibit-startup-message t)
@@ -55,7 +54,7 @@
 (use-package tree-sitter-langs
   :ensure t)
 
-(add-to-list 'load-path "/home/christian/emacs-libvterm")
+(add-to-list 'load-path "~/emacs-libvterm")
 (require 'vterm)
 
 (global-tree-sitter-mode)
@@ -68,6 +67,7 @@
 (setq TeX-PDF-mode t)
 
 ;; Programming/Modes/LSP
+
 
 (defun lsp-booster--advice-json-parse (old-fn &rest args)
   "Try to parse bytecode instead of json."
@@ -169,11 +169,22 @@
    (setq-local buffer-save-without-query t))
   (add-hook 'before-save-hook 'lsp-format-buffer nil t))
 
+(use-package flycheck-rust
+    :ensure t
+    :after flycheck
+    :config
+    (with-eval-after-load 'rust-mode
+      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
 (use-package cmake-mode
   :ensure t)
 
 (use-package racket-mode
   :ensure t)
+
+(use-package lsp-java
+  :ensure t
+  :config (add-hook 'java-mode-hook 'lsp))
 
 (use-package latex-preview-pane
   :ensure t
@@ -196,6 +207,9 @@
 				   :request "launch"
 				   :program "path"
 				   :cwd "path"))
+
+(use-package magit
+  :ensure t)
 
 ;; Movimentation
 
@@ -222,3 +236,5 @@
   :ensure t
   :init
   (move-text-default-bindings))
+
+ )
