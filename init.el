@@ -59,6 +59,13 @@
 
 (global-tree-sitter-mode)
 
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+(use-package nerd-icons
+  :ensure t)
+
 ;; NON MELPA PACKAGES
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -237,4 +244,4 @@
   :init
   (move-text-default-bindings))
 
- )
+
