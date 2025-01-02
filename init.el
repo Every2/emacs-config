@@ -70,6 +70,14 @@
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
+(add-to-list 'load-path "~/emacs-ob-racket")
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (racket . t)))
+
+
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 (setq TeX-PDF-mode t)
 
@@ -141,8 +149,10 @@
 
 
 (use-package helm-lsp
+  :ensure t
+  :bind (("M-x" . helm-M-x))
   :commands helm-lsp-workspace-symbol
-  :ensure t)
+  )
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list
@@ -244,4 +254,8 @@
   :init
   (move-text-default-bindings))
 
+;; Performance
+
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
 
