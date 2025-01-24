@@ -119,7 +119,12 @@
   :ensure t)
 
 (use-package yasnippet
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'yas-minor-mode)
+  (add-hook 'text-mode-hook #'yas-minor-mode)
+  (add-hook 'org-mode-hook #'yas-minor-mode)
+  )
 
 (use-package lsp-mode
   :ensure t
@@ -131,6 +136,10 @@
   (cmake-mode . lsp)
   (toml-mode . lsp)
   (racket-mode . lsp)
+  (js-mode . lsp)
+  (typescript-mode . lsp)
+  (html-mode . lsp)
+  (css-mode . lsp)
   :commands lsp)
 
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . 'lsp-mode))
@@ -173,6 +182,9 @@
   :ensure t)
 
 (use-package go-mode
+  :ensure t)
+
+(use-package typescript-mode
   :ensure t)
 
 (use-package rustic
@@ -258,4 +270,3 @@
 
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024))
-

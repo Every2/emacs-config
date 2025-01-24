@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: modernmain
+# key: mma
+# --
+
+auto main() -> main {}

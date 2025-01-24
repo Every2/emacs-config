@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: main
+# key: m
+# --
+
+#include <stdio.h>
+
+int main() {}
