@@ -48,7 +48,4 @@ Install tex-live before and run
 M-x list-packages and find auctex or M-X auctex
 ```
 
-# Vterm
-
-Vterm is compiled from source, because I use Ubuntu. Recommended: Use Guix or use melpa.
 

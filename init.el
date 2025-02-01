@@ -54,8 +54,8 @@
 (use-package tree-sitter-langs
   :ensure t)
 
-(add-to-list 'load-path "~/emacs-libvterm")
-(require 'vterm)
+(use-package vterm
+  :ensure t)
 
 (global-tree-sitter-mode)
 
@@ -66,17 +66,23 @@
 (use-package nerd-icons
   :ensure t)
 
+(use-package dashboard
+  :ensure t
+  :custom
+  (dashboard-startup-banner 'logo)
+  (dashboard-center-content t)
+  (dashboard-show-shortcuts nil)
+  (dashboard-set-heading-icons t)
+  (dashboard-icon-type 'nerd-icons)
+  (dashboard-set-file-icons t)
+  (dashboard-items '((recents . 5)
+                     ))
+  :config
+  (dashboard-setup-startup-hook))
+
 ;; NON MELPA PACKAGES
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-
-(add-to-list 'load-path "~/emacs-ob-racket")
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (racket . t)))
-
 
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 (setq TeX-PDF-mode t)
