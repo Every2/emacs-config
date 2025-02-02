@@ -55,4 +55,8 @@ In order to fix missing icons run:
 ```
 M-x all-the-icons-install-fonts
 M-x nerd-icons-install-fonts
-``` 
+```
+
+# Elixir
+
+Download ElixirLS from releases and create a folder in your home with the files
