@@ -146,7 +146,9 @@
   (typescript-mode . lsp)
   (html-mode . lsp)
   (css-mode . lsp)
-  :commands lsp)
+  :commands lsp
+  :init
+  (add-to-list 'exec-path "~/elixirls/"))
 
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . 'lsp-mode))
 
