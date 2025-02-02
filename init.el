@@ -42,7 +42,7 @@
   :ensure t
   :config
   (progn
-    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+    (setq neo-theme (if (display-graphic-p) 'nerd-icons 'arrow))
     (global-set-key [f8] 'neotree-toggle)))
 
 (use-package all-the-icons
