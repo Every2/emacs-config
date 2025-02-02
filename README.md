@@ -48,4 +48,11 @@ Install tex-live before and run
 M-x list-packages and find auctex or M-X auctex
 ```
 
+# Icons
 
+In order to fix missing icons run:
+
+```
+M-x all-the-icons-install-fonts
+M-x nerd-icons-install-fonts
+``` 
