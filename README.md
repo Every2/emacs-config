@@ -67,3 +67,12 @@ Para python basta adicionar o lsp, como eu uso Arch, essas são as instruções:
 ```
 sudo pacman -S python-lsp-server python-pycodestyle python-pydocstyle python-pyflakes python-pylint python-rope flake8 yapf python-whatthepatch
 ```
+
+# Vterm
+
+Para conseguir compilar o vterm instale:
+
+```
+sudo pacman -S cmake libvterm libtool
+```
+
