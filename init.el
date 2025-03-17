@@ -82,7 +82,9 @@
 (setq major-mode-remap-alist
       '((python-mode . python-ts-mode)
 	(c-mode . c-ts-mode)
-	(c++-mode . c++-ts-mode)))
+	(c++-mode . c++-ts-mode)
+	(shell-script-mode . bash-ts-mode)
+	(sh-mode . bash-ts-mode)))
 
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
 (add-hook 'rust-ts-mode-hook #'eglot-ensure)
