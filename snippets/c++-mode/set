@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: set
-# key: s
-# --
-
-auto set() -> T {}

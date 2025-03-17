@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: main
-# key: m
-# --
-
-int main() {}
