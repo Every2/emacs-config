@@ -91,7 +91,10 @@
 
 (add-hook 'python-ts-mode-hook #'eglot-ensure)
 
-(add-hook 'c++-ts-mode-hook #'eglot-ensure)
+(use-package nasm-mode
+  :ensure t
+  :mode "\\.asm"
+  :hook (nasm-mode . (lambda () (electric-indent-mode -1))))
 
 ;; Debug
 
