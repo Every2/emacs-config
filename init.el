@@ -15,6 +15,9 @@
 (scroll-bar-mode -1)
 (global-display-line-numbers-mode t)
 
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(setq fill-column 80)
+
 ;; Eglot booster
 (use-package eglot-booster
 	:after eglot
