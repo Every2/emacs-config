@@ -120,6 +120,7 @@
 
 ;; Moves
 (global-set-key (kbd "C-<tab>") 'other-window)
+(global-set-key (kbd "C-c f") 'eglot-format-buffer)
 
 (use-package which-key
   :ensure t
